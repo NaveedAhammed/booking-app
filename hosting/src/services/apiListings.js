@@ -10,3 +10,14 @@ export const getListings = async function () {
 
   return data;
 };
+
+export const deleteListing = async function (id) {
+  const { data, error } = await supabase.from('listings').delete().eq('id', id);
+
+  if (error) {
+    console.log(error.message);
+    throw new Error('Listing could not be deleted');
+  }
+
+  return data;
+};

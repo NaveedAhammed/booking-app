@@ -1,17 +1,20 @@
-import styled from 'styled-components';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import GlobalStyles from './styles/GlobalStyles';
-
-const H1 = styled.h1`
-  font-size: 30px;
-  font-weight: 600;
-  color: orangered;
-`;
+import Dashboard from './pages/Dashboard';
+import AppLayout from './ui/AppLayout';
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <H1>Hello</H1>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<Navigate replace to="dashboard" />} />
+            <Route path="dashboard" element={<Dashboard />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
